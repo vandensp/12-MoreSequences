@@ -14,7 +14,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the various   TEST   functions in this module. """
-    #run_test_make_simple_list()
+    run_test_make_simple_list()
     run_test_make_simple_string()
     run_test_make_less_simple_string()
 
@@ -23,7 +23,7 @@ def main():
     #     #   They launch annoying rg.RoseWindows on each run that you don't want
     #     #   until you get to _TODO_ 9 and _TODO_ 10.
     #     # -------------------------------------------------------------------------
-    #     # run_test_draw_shapes()
+    #run_test_draw_shapes()
     run_test_rectangles_from_circles()
 
 
@@ -275,7 +275,7 @@ def draw_shapes(shapes, window):
       :type window:  rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 9. Implement and test this function.
+    # Done: 9. Implement and test this function.
     #             *** Make sure you do _TODO_ 8 in main first! ***
     # The testing code is already written for you; you enabled it via _TODO_ 8.
     #
@@ -287,6 +287,9 @@ def draw_shapes(shapes, window):
     ###########################################################################
     # -------------------------------------------------------------------------
 
+    for k in range (len(shapes)):
+        shapes[k].attach_to(window)
+        window.render(0.3)
 
 def run_test_rectangles_from_circles():
     """ Tests the   rectangles_from_circles    function. """
@@ -399,7 +402,13 @@ def rectangles_from_circles(circles):
     ###########################################################################
     # -------------------------------------------------------------------------
 
-
+    list = []
+    for k in range (len(circles)):
+        circle = circles[k]
+        c1 = rg.Point(circle.center.x - circle.radius, circle.center.y - circle.radius)
+        c2 = rg.Point(circle.center.x + circle.radius, circle.center.y + circle.radius)
+        list = list + [rg.Rectangle(c1,c2)]
+    return list
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
